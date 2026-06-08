@@ -1,0 +1,156 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+import random
+import numpy as np
+import time
+import numba
+import math
+from numpy.random import Generator, PCG64DXSM, SeedSequence
+import multiprocessing as mp
+
+np.set_printoptions(suppress=True)
+
+@numba.jit
+def single_play(fnoise2, fplen2, falen2, fmaxval2, fsides2, frein2, fpunish2, frecweights2, fsigweights2, fstate2, frandunif22, frandunif42, frandunif62, frandunif82, frandunif102, fpairs2, frewards2):
+    fcumsum2 = 0.
+    
+    if fsides2[0] == 0 or fsides2[1] == 0:
+        stateidx = fstate2 % fplen2
+    else:
+        stateidx = fstate2 % falen2
+    
+    leftstate = fpairs2[stateidx][0]
+    rightstate = fpairs2[stateidx][1]
+    
+    leftweights = (fsigweights2[fsides2[0]][0][leftstate]).copy()
+    rightweights = (fsigweights2[fsides2[1]][1][rightstate]).copy()
+    
+    leftsum = np.cumsum(leftweights)
+    rightsum = np.cumsum(rightweights)
+    
+    leftsumrand = leftsum[-1]*frandunif22
+    rightsumrand = rightsum[-1]*frandunif42
+    
+    lxsum = np.zeros(len(leftsum))
+    rxsum = np.zeros(len(leftsum))
+    lxsum[leftsum<leftsumrand] = 1
+    rxsum[rightsum<rightsumrand] = 1
+    
+    leftval = math.floor(np.sum(lxsum))
+    rightval = math.floor(np.sum(rxsum))
+    
+    if frandunif102[0] < fnoise2:
+        leftval -= 1
+        if leftval < 0: leftval = 0
+    elif frandunif102[1] > (1-fnoise2):
+        leftval += 1
+        if leftval > fmaxval2: leftval = fmaxval2
+        
+    if frandunif102[1] < fnoise2:
+        rightval -= 1
+        if rightval < 0: rightval = 0
+    elif frandunif102[0] > (1-fnoise2):
+        rightval += 1
+        if rightval > fmaxval2: rightval = fmaxval2
+    
+    recurn_idx = math.floor(leftval*(fmaxval2+1) + rightval)
+    recweights = (frecweights2[recurn_idx]).copy()
+    recsum = np.sum(recweights)
+    recrand = recsum*frandunif62
+    recpick = 0 if recrand < recweights[0] else 1
+    
+    left_correct = frewards2[stateidx][0]
+    right_correct = frewards2[stateidx][1]
+
+    if left_correct == 1:
+        if recpick == 0:
+            fcumsum2 += 1
+            leftweights[leftval] += frein2
+            rightweights[rightval] += frein2
+            recweights[0] += frein2
+        else:
+            leftweights[leftval] += fpunish2
+            rightweights[rightval] += fpunish2
+            recweights[1] = max(recweights[1] + fpunish2, 1.0)
+    else:
+        if recpick == 1:
+            fcumsum2 += 1
+            leftweights[leftval] += frein2
+            rightweights[rightval] += frein2
+            recweights[1] += frein2
+        else:
+            leftweights[leftval] += fpunish2
+            rightweights[rightval] += fpunish2
+            recweights[0] = max(recweights[0] + fpunish2, 1.0)
+            
+    for idx21 in range(0, len(leftweights)):
+        if leftweights[idx21] < 1: leftweights[idx21] = 1
+        if rightweights[idx21] < 1: rightweights[idx21] = 1
+        
+    fsigweights2[fsides2[0]][0][leftstate] = leftweights
+    fsigweights2[fsides2[1]][1][rightstate] = rightweights
+    frecweights2[recurn_idx] = recweights
+    
+    return frecweights2, fsigweights2, fcumsum2
+
+@numba.jit
+def randoms(frng, fnsteps1, fmaxvalue1, fplen1, falen1, fsides1):
+    fnaturestates1 = frng.integers(fplen1*falen1, size=fnsteps1)
+    fnaturesides1 = frng.integers(fsides1, size=(fnsteps1, 2))
+    frandunif2 = frng.random(fnsteps1)
+    frandunif4 = frng.random(fnsteps1)
+    frandunif6 = frng.random(fnsteps1)
+    frandunif8 = frng.random((fnsteps1, 2, fmaxvalue1))
+    frandunif10 = frng.random((fnsteps1, 2))
+    return fnaturestates1, frandunif2, frandunif4, frandunif6, frandunif8, frandunif10, fnaturesides1
+
+@numba.jit
+def nstepsfn(fnoiseN, fplenN, falenN, fmaxvalN, fsidesN, frecweightsN, fsigweightsN, frandunif2N, frandunif4N, frandunif6N, frandunif8N, frandunif10N, fnaturestatesN, fnsteps, fpairsN, frewardsN, freinN, fpunishN):
+    fcumsumN = 0
+    for idxN in range(0, fnsteps):
+        fstateN = fnaturestatesN[idxN]
+        frecweightsN, fsigweightsN, fcumsumadd = single_play(fnoiseN, fplenN, falenN, fmaxvalN, fsidesN[idxN], freinN, fpunishN, frecweightsN, fsigweightsN, fstateN, frandunif2N[idxN], frandunif4N[idxN], frandunif6N[idxN], frandunif8N[idxN], frandunif10N[idxN], fpairsN, frewardsN[idxN])
+        fcumsumN += fcumsumadd
+    return frecweightsN, fsigweightsN, fcumsumN
+
+@numba.jit
+def nstepsfntest(fnoiseN, fplenN, falenN, fmaxvalN, fsidesN, frecweightsN, fsigweightsN, frandunif2N, frandunif4N, frandunif6N, frandunif8N, frandunif10N, fnaturestatesN, fnsteps, fpairsN, frewardsN, freinN, fpunishN):
+    fcumsumNtest = 0
+    pair_stats = np.zeros((fnsteps, len(fpairsN), 2), dtype=numba.int64)
+    for idxN in range(0, fnsteps):
+        fstateN = fnaturestatesN[idxN]
+        frecweightsNtest, fsigweightsNtest, fcumsumaddtest = single_play(fnoiseN, fplenN, falenN, fmaxvalN, np.array([0, 0], dtype=np.int64), freinN, fpunishN, frecweightsN, fsigweightsN, fstateN, frandunif2N[idxN], frandunif4N[idxN], frandunif6N[idxN], frandunif8N[idxN], frandunif10N[idxN], fpairsN, frewardsN[idxN])
+        fcumsumNtest += fcumsumaddtest
+        stateidx = fstateN % len(fpairsN)
+        pair_stats[idxN, stateidx, 0] += 1
+        pair_stats[idxN, stateidx, 1] += int(fcumsumaddtest)
+    return frecweightsN, fsigweightsN, fcumsumNtest, pair_stats
+
+def play_sequence(n, rng, rein1, punish1, rein2, punish2, timesteps, nsteps, sides, pairs, testpairs, nonadjpairs, allpairs, plen, alen, terms, maxvalue, startstop, noise, annealing, runs, inertia, blocklength, frewards_all, nsteps_eval=None):
+    sigweights = inertia*np.ones([sides, 2, terms, maxvalue])
+    recweights = inertia*np.ones([((maxvalue+1)*(maxvalue+1)), startstop])
+    
+    cumsuc = 0
+    iterswitch = 0
+    rein = rein1
+    punish = punish1
+    
+    for t in range(0, timesteps//nsteps):
+        if ((t+1)*nsteps)%blocklength == 0:
+            iterswitch = (iterswitch+1)%2
+            noise = noise-annealing
+            rein, punish = (rein1, punish1) if iterswitch == 0 else (rein2, punish2)
+            
+        naturestates, randunif2, randunif4, randunif6, randunif8, randunif10, naturesides = randoms(rng, nsteps, maxvalue, plen, alen, sides)
+        recweights, sigweights, cumsucadd = nstepsfn(noise, plen, alen, maxvalue, naturesides, recweights, sigweights, randunif2, randunif4, randunif6, randunif8, randunif10, naturestates, nsteps, allpairs, frewards_all, rein, punish)
+        cumsuc += cumsucadd
+        
+    naturestates, randunif2, randunif4, randunif6, randunif8, randunif10, naturesides = randoms(rng, nsteps, maxvalue, 1, 2, sides)
+    recweights, sigweights, testcumsucadd, pair_stats_test = nstepsfntest(noise, plen, alen, maxvalue, naturesides, recweights, sigweights, randunif2, randunif4, randunif6, randunif8, randunif10, naturestates, nsteps, testpairs, frewards_all, rein, punish)
+    
+    pair_stats_all = None
+    if nsteps_eval is not None:
+        _, _, _, pair_stats_all = nstepsfntest(noise, plen, alen, maxvalue, naturesides, recweights, sigweights, randunif2, randunif4, randunif6, randunif8, randunif10, naturestates, nsteps_eval, allpairs, frewards_all, rein, punish)
+
+    return sigweights, cumsuc, cumsucadd, testcumsucadd, recweights, pair_stats_test, pair_stats_all

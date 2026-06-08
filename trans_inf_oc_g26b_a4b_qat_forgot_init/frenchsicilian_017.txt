@@ -1,0 +1,765 @@
+Franco-Sicilian Abstraction
+transpositions, transitivity and transfer learning with
+Lewis-Skyrms signaling games
+Nathan Gabriel
+University of California Merced April 6, 2025
+Abstract
+This paper shows how a rudimentary type of abstraction can obtain
+in Lewis-Skyrms signaling games. Here, abstraction is understood as oc-
+curring when different particulars take on the same functional role. Some
+abstraction may be guided by innate biases, and the paper develops an
+analogy of reasoning about strategic thinking in chess to highlight some
+epistemic concerns that are raised by the presentation of abstraction. Con-
+cretely, the signaling game models of this paper are developed in the con-
+text of two tasks that are much simpler than strategizing in chess. The
+first task is a transitive inference task that has been substantially studied
+in both humans and non-human animals. General features of the models
+developed for the transitive inference task are then carried over to a model
+for the second task of learning rudimentary grammatical structures. This
+second task is based on studies of human infants and non-human primates’
+ability to learn “nonsense grammars”. Closing discussion highlights some
+strengths of the abstraction exhibited in the Lewis-Skyrms signaling game
+models.
+11 Introduction
+1 e4 c5 2 Nf3 e6 3 c3 d58rmblkans
+7opZ0Zpop
+60Z0ZpZ0Z
+5Z0opZ0Z0
+40Z0ZPZ0Z
+3Z0O0ZNZ0
+2PO0O0OPO
+1SNAQJBZR
+a b c d e f g h
+In the above chess position, computer engines suggest that capturing the
+d pawn, 4 eXd5, is the best move. However, about 25% of the time, chess
+masters instead advance the e pawn, 4 e5 . Why? “White is hoping a 1. . . c5
+[Sicilian Defense] player won’t be comfortable in a French [Defense]. And that’s
+also why Black often avoids the objectively best 4. . .Nc6 5 d4 and prefers a
+gambit with 4. . . d4!? 5 c Xd4 cXd4 6Bb5+ Nc6 7Bc6+bXc6 8Qa4or
+6. . .Bd7 7NXd4!? ” (Soltis, 2007). In chess, a transposition occurs when a
+sequence of moves begins with the moves of a particular opening, say a Sicilian
+Defense, but results in a board position typical of a different opening, say a
+French defense. When White sub-optimally advances her e pawn, she attempts
+to transpose the game into a French Defense. If Black sub-optimally advances
+her d pawn, she avoids the transposition at the cost of a pawn.
+This story of chess transpositions serves dual analogical roles for this paper.
+First, it demonstrates how we might think about the type of abstraction to be
+described. While this paper explicates a specific and relatively simple example
+of abstraction using transitive inference, the chess story highlights our ability
+to use this type of abstraction in more complicated contexts. Consider Frege’s
+conception of abstraction. According to him, we know the abstract form of a
+sum by knowing that a particular formula is a sum, say 2+3=5, and seeing that
+replacing any subset of the numbers in the formula with different numbers will
+also yield a formula that is a sum (though, it is certainly not guaranteed that the
+resulting formula’s reference is True). In this conception of abstraction we see
+different particulars, numbers, can satisfy the same roles, an addend or result,
+to make a summation formula. It is also the case that in Frege’s conception
+of abstraction, we know exactly what particulars can be substituted into the
+formula, any number and nothing that is not a number. While this may be
+a good concept of abstraction in the context of formal languages, this paper
+2allows that there may be vagueness in the boundaries around what particulars
+can satisfy the same role in an abstract category.
+Chess masters use the abstract category of an opening to narrow the cal-
+culations that they have to make. While a particular board position might
+be novel, their familiarity with the abstract category of positions associated
+with a particular opening guides what strategic ideas they consider (de Groot,
+1978; Gobet et al., 2004). The fact that transpositions are possible entails that
+some board positions might occupy a vague boundary between different cate-
+gories of opening and associated strategic ideas. So when not discussing the
+concrete Lewis-Skyrms signaling game to be presented, this paper’s discussion
+of abstraction simply refers to contexts where different particulars take on the
+same functional role. That is, just as two different numbers can play the role
+of addends, two different board positions can play the role of reminding a chess
+master of strategic ideas in the French Defense; but while we know exactly what
+can and ought to play the role of an addend, there may be board positions oc-
+cupying a vague boundary around the set of positions that are or ought to be
+associated with strategic ideas in the French Defense.1
+Second, the story points us towards a philosophical problem that accom-
+panies abstraction. Let’s suppose that we think beliefs that lead to success in
+action are true beliefs. The chess story immediately shows why we might doubt
+this. A player may believe 4 e5 is a stronger move than 4 eXd5due to her
+having more success, i.e. more wins, with that continuation. However, this may
+merely be a consequence of her having more successfully abstracted the strate-
+gic dynamics of board positions associated with the French Defense than the
+Sicilian; i.e. if your only tool is a hammer, then every problem looks like a nail.
+As another example, one might think that we come to represent the world as
+having three dimensional Euclidean structure by abstracting over experiences
+and that since we successfully interact with the world using this representation,
+then it is true that the world has this structure. But just because we success-
+fully navigate the world representing it as Euclidean does not mean there is
+not alternative representation with which we would have more success. Worse,
+sections 3.3 and 3.4 will suggest that some abstractions may be a consequence
+of (possibly arbitrary) innate dispositions rather than being wholly empirical.2
+Some research has investigated how humans store abstract information about
+chess positions (Chassy, 2013). However, this paper focuses on simpler cogni-
+tive tasks. This allows us to examine correspondingly simple models that are
+more easily interpreted; in turn, this allows us to develop a clearer understand-
+ing of the philosophical implications of the models rather then getting lost in
+the details of continually evolving complex models. Accordingly, this paper
+1See De Marzo and Servedio for a statistical clustering of board positions that coheres
+with theoretical openings (De Marzo and Servedio, 2023).
+2Explicitly, the worry is that if our representation of something in the world is reflective
+of an arbitrary disposition, then this may entail that in some relevant way we understand
+the world as having a particular structure when that structure is merely a consequence of
+our arbitrary innate disposition. Some have, perhaps wrongly, interpreted Kant as having a
+concern along these lines (Janiak, 2022; Warren, 1998).
+3models two tasks taken from the comparative psychology literature since we
+take nonhuman animals to have less sophisticated cognitive resources available
+for learning and inference. Of course, these tasks have also been studied with
+human subjects who behave similarly to the nonhuman animal subjects that
+succeed at the tasks.
+The first task that is modeled is a transitive inference task, which involves
+testing whether a subject trained on contiguous pairs of linearly ordered stim-
+uli can abstract information about that relation to apply it two a novel non-
+contiguous pair of stimuli. Psychology experiments have shown children as
+well as a variety of nonhuman animals succeed at the transitive inference task.
+Later discussion of this task, in accordance with the second analogical role of
+the chess transpositions story, notes that expected behavior for the task should
+not strictly be called “success” as the inference is not warranted.
+The second task is a nonsense grammar task. It is a variation of experiments
+habituating human infants and nonhuman primate infants to sound patterns,
+called nonsense grammars, and testing whether the habituation persists for novel
+sounds presented in the same patterns. While this is an entirely distinct task
+from the transitive inference task, it can be similarly described: it tests whether
+a subject trained on a relation between triplets of stimuli can abstract informa-
+tion about that relation to apply it to a novel triplet of stimuli. This second
+task is important for showing that the themes abstracted from the transitive
+inference task are not merely consequences of particular details of that task.
+2 Transitive Inference
+Abstractly, transitive inference task is as follows: Five objects/stimuli are ar-
+ranged in a serial order: A,B,C,D,E. The agent to be tested is conditioned
+on adjacent pairs in the serial ordering through rewards for selecting the first
+object in a presented pair. E.g. If presented with A-Bthe agent is rewarded for
+choosing the item on the left. If presented with D-Cthe agent is rewarded for
+choosing the item on the right. After the agent has learned to respond correctly
+to pairs of objects that are adjacent in the serial order, she is then tested on
+the non adjacent pairs B-DandD-B. (AandEare not tested since choosing
+Ais always rewarded and choosing Eis never rewarded; thus, choosing the left
+object in the pair A-Cmight reflect choosing A always having been rewarded
+rather than reflect the transitive ordering having been represented.) Choosing
+the correct item in the non-adjacent pairing is then understood as the agent
+representing the transitive ordering.
+Concretely, Bryant and Trabasso showed that children ages 4-6 succeeded at
+the transitive inference task. The stimuli used were rods of different colors and
+varying lengths. The children were shown adjacent adjacent pairs, in a serial
+ordering by length, were shown to the children, with the rods protruding through
+holes such that one inch of the rod was visible. Thus the children could observe
+the color of the rods, but not the length. After being asked which rod in a pair
+was taller or shorter, the rods were removed and laid flat on a table in front
+4of the child so that they could examine whether they had answered correctly.
+After the children learned to answer correctly for pairs that were adjacent in
+the ordering by length, they were then test on non adjacent pairs and tended to
+answer correctly. This experiment was taken to disprove earlier work by Piaget
+who claimed that children did not understand or represent transitive relations
+(Bryant and Trabasso, 1971).
+Concretely, Gillan used colored plastic containers to show that chimpanzees
+succeed at the transitive inference task. The colored containers were assigned an
+arbitrary serial ordering and then adjacent pairs were presented to the chimps
+with a food reward in whichever container was first in the serial ordering. After
+the chimps were conditioned to almost always choose the container with the
+food, they were then tested on the nonadjacent pairs. The result was that the
+chimpanzees tended to chose the container that had food in it, i.e. the one
+that was first in the serial ordering (Gillan, 1981). In a similar experiment, von
+Fersen et al. showed Pigeons succeed at the transitive inference task using black
+and white ink blots as the stimuli and and using a contraption that rewarded
+the pigeons with food when they pecked at the correct ink blot in a pair (von
+Fersen et al., 1991). Likewise, Davis showed that rats succeed at the transitive
+inference task using the stimuli of distinct odors to mark pairs of doors that the
+rats could open to retrieve a food reward (Davis, 1992). Bond et al. showed that
+scrub-jays succeed at the transitive inference task using a mechanism similar to
+von Feresen et al., but with projections of different colors of light rather than
+ink blots as the stimuli (Bond et al., 2003).
+It should be noted that, in the nonhuman animal experiments just listed,
+the transitive inference is not warranted; e.g. food always being in the green
+container when a green and yellow pair is presented and always being the the
+yellow container when a yellow and red pair is presented does not entail that the
+food will be in the green container when a green and red pair is presented. This
+contrasts with Bryant and Trabasso’s study involving different colored rods of
+varying lengths because transitivity does hold for length: i.e. if a green rod
+is longer than a yellow rod and that yellow rod is longer than a red rod, then
+this entails that the green rod is longer than the red rod. That the transi-
+tive inference is warranted in the human experiment and unwarranted in the
+nonhuman animal experiments is merely a coincidence of the experiments that
+happened to comprise the most pertinent background information. There have
+been experiments showing successful transitive inference in nonhuman animals
+for which transitivity does hold for the stimuli, such as physical dominance, and
+there have been experiments showing “successful” transitive inference in human
+participants for which transitivity does not hold for the stimuli, such as char-
+acters from a written language that the participants do not know (Grosenick
+et al., 2007; Frank et al., 2005).
+There have also been many computation models of transitive inference. Bar-
+rett’s (Barrett, 2014) model is the most transparent. In Barrett’s model, agents
+are first conditioned on a full serial ordering of stimuli including non-adjacent
+pairs. The agents are then presented with a new set of serially ordered stimuli,
+this time conditioned on only adjacent pairs. Modeling a type of transfer learn-
+5ing, the agents are allowed to transfer some of their dispositions from the first
+set of stimuli to their dispositions for the new stimuli by allowing initial signals
+transmitted for the new set of stimuli to be processed as if the signals were the
+old stimuli. That is, the agents learn to map the new stimuli to their evolved
+dispositions for the old stimuli, which now serve as an intermediary represen-
+tation in an agent’s evolution of dispositions for the new stimuli. This allows
+the agents to infer the appropriate response to a novel pairing of nonadjacent
+stimuli from the new ordering most of the time.
+Many computational models of transitive inference do not explicitly invoke
+transfer learning. However, given that the correct action for the test pair is
+underdetermined by the contiguous pairs that a model is trained on, some type
+of prior bias must be present to explain successful action for the test pair.
+For example, Siemann and Delius develop a model that makes use of lateral
+inhibition, whereby, on the transmission of two signals, only the signal of larger
+magnitude is acted upon. When presented with a stimulus pair from a serial
+ordering, an agent might initially transmit both a signal to choose the left
+object and a signal to choose the right object, but only the signal of greater
+magnitude will go through (Siemann and Delius, 1998). On reflection, it is clear
+that this is a type of transfer learning since the lateral inhibition mechanism is
+itself a presupposed set of dispositions representing the serial ordering of signal
+magnitudes. Other models are more opaque. De Lillo et al. give a three layer
+neural network model, which, although not explicitly invoking lateral inhibition,
+is trained using a cost function that always moves the weights in the direction
+of hidden layer nodes always associating the rewarded stimulus with a greater
+magnitude than the magnitude associated with the other stimulus in a pair (or
+always with a smaller magnitude depending on the randomly determined initial
+state of the network) (De Lillo et al., 2001). So this model might also be thought
+of as presupposing a serially ordered representation.3
+3 Transitive Inference with Transfer Learning
+This section presents three models of transitive inference by means of types
+of learning that can be characterized as transfer learning. The first model is a
+straightforward example of transfer learning. In this model, an agent first learns
+to choose the preferred stimuli in a pair, being trained on both adjacent and non-
+adjacent pairs in a serial ordering. Then, the dispositions from this first phase
+of training are co-opted in a second phase. In this second phase of training an
+agent is trained on only adjacent pairs in a new set of serially ordered stimuli.
+Since this second phase of training involves mapping the new stimuli to the
+dispositions formed in the first phase of training, agents subsequently succeed
+3It is possible that this sort of prior bias could have evolved for an organism to navigate an
+environment in which there is often a linear relation between objects. However, section 3.4 will
+explain that such a bias could be a result of relatively abstract combinatorial properties. This
+makes it plausible that the bias facillitating the inference is a spandrel rather than reflecting
+environmental evolutionary pressures.
+6when tested on the non-adjacent pair for the new stimuli. This first model
+is essentially the same as Barrett’s 2014 model, albeit with some negligible
+differences (Barrett, 2014). Call this the “diachronic model”.
+The primary purpose of the diachronic model is to simplify the presentation
+and explanation of the other two models. Like the diachronic model, both of
+these models make use of two sets of serially ordered stimuli. However, agents
+are trained on both sets of stimuli simultaneously. Additionally, agents are
+trained on pairings between the two sets of stimuli; e.g., let A, B, C, D, E be
+the first set of stimuli and a, b, c, d, e be the second set of stimuli, then agents
+are trained to choose B over c in a B-c pair. They are only trained on non-
+adjacent pairings when both components of a pairing are from the first set of
+stimuli. One of these models is a simple extension of the Diachronic Model in
+its first phase of training while the other makes use of signal magnitudes. Call
+these models the “synchronous model” and “synchronous magnitudes model”
+respectively.
+73.1 Diachronic Transfer
+Figure 1: First Training Phase of Diachronic Model
+The diachronic transfer learning model is a two sender one receiver game during
+the first phase of training. Each sender see one of the two stimuli in a pair
+composed of either adjacent or non-adjacent stimuli in the serial ordering. That
+is, letting A, B, C, D, E be the stimuli in their serial order. Then every pairing
+of two distinct stimuli is in the training set. The senders each have one urn
+for each of the five stimuli that can be observed, and each urn begins the game
+8with a single ball of each type. Figure 1, depicts each sender with five types of
+balls, but this is parameter in the model that can be varied. The receiver has
+one urn for each of the possible combinations of signals that can be received
+from the senders; each of these urns begins the game with two balls in it, a left
+ball and a right ball. During the training, pairs are selected at random with
+equal probability. Suppose, the pair B-D is selected. Then the left sender will
+draw from her B urn and the right from her D urn. Suppose the left sender
+draws a 2-ball and the right a 1-ball, then the receiver will draw from her 2-1
+urn. The receivers draw then determines whether the left or the right stimuli
+in the pairing will be chosen. If the correct stimmuli is chosen, in this case
+B which is on the left, then the urns that were drawn from are reinforce with
+additional balls of the type that were drawn. If the incorrect stimuli is chosen
+than the urns are punished by removing balls of the type that were drawn, so
+long as at least one ball of each type remains in each urn. This is the same basic
+Roth-Erev reinforcement with punishment learning that has been described in
+detail elsewhere and represented as (+1 ,−1) (Barrett and Gabriel, 2022). The
+notation (+ r,−p) represents on a success adding r-many balls of the type drawn
+to each of the urns drawn from, and on a failure removing p-many balls of the
+type drawn from each of the urns drawn from, so long as at least one ball of
+each type remains in each urn.
+Figure 2: Second Training Phase of Diachronic Model
+9In the second phase of training (see Figure 2), the left and right senders are
+given new urns, one for each of the new set of stimuli, a, b, c, d, e. Each of these
+urns have ball types A, B, C, D, and E which then determine which urn from the
+first phase of training will be drawn from. Draws from the urns the A, B, C, D,
+and E urns then determine what is transmitted to the receiver who retains her
+urns from the first phase of training. It is in this way that dispositions from the
+first phase of training are co-opted in learning correct actions for the second set
+of stimuli. Learning during the second phase of training also proceeds according
+to Roth-Erev reinforcement with punishment learning dynamics. The testing
+phase is then performed with the b-d and d-b pairs. No learning occurs during
+the testing phase.
+3.2 Synchronous Transfer
+In the synchronous transfer model (see Figure 3), there is only one training
+phase. The dynamics of the model are the same as the model in the first
+phase of the training for the diachronic model. However, the training consists
+in pairings from both the A, B, C, D, and E stimulus set and the a, b, c, d,
+and e stimulus set. Pairings across the stimulus sets are allow, e.g. B-c. But
+non adjacent pairs are only trained for stimuli from the first set, e.g. C-E.
+There are no pairings in which both elements are occupy the same position in
+the serial ordering, e.g. D-d is disallowed. So, A-D, B-A, d-C, and e-d are all
+members of the training set and neither B-d nor a-d are member of the training
+set. During training pairs from the training set are selected at random with
+equal probability and the learning dynamics are the same as in the diachronic
+model, i.e. Roth-Erev reinforcement with punishment. After the training phase
+is complete, the testing phase consists of the b-d and d-b pairs and no learning
+occurs during testing.
+10Figure 3: Synchronous Model. For simplicity, this model is depicted with each of
+a sender’s urns containing five ball types. However this is a parameter that can be
+varied. The results section focuses on simulation results for which each urn contained
+ten ball types.
+113.3 Synchronous Magnitudes
+In the synchronous magnitudes model (see Figure 4), the training and testing
+sets are the same as in the synchronous model. Likewise there is only a single
+training phase before the testing phase. The only difference in the synchronous
+magnitudes model is in the senders’ urns. Rather than the senders each having a
+single urn for each of the stimuli that can be observed, each stimuli is associated
+with M-many urns with each of these urns beginning the game with one 0 ball
+and one 1 ball. Figure 4 depicts the model with M=6, though later results are
+reported for M=10. When a stimuli is observed by one of the senders, that
+sender draws from every urn associated with that stimulus and then transmits
+the sum of her draws. For example, if the left sender, upon seeing A draws five
+1 balls and one 0 ball, then she will transmit 5; if the right sender upon seeing
+B draws two 1 balls and four 0 balls, she will transmit 2; then the receiver will
+draw from the 5-2 urn just as she would in the prior models. Again, the learning
+dynamics is urn based reinforcement with punishment. Thus if, in the example
+just given, the correct stimuli was chosen, then the left sender would reinforce
+1 balls in the five urns that she drew 1 balls from and reinforce 0 balls in the
+urn that she drew the 0 ball from. Likewise the right sender would reinforce 1
+balls in the two urns that she drew 1 balls from and reinforce 0 balls in the four
+urns that she drew zero balls from.
+12Figure 4: Synchronous Magnitudes Model. For simplicity, this model is depicted with
+each sender having six urns for each stimuli that can be observed. However, this is
+a parameter that can be varied. The results section focuses on simulation results for
+which senders have ten urns for each stimuli that can be observed.
+3.4 Transitive Inference Simulation Results
+The diachronic model performs very poorly. Running simulations for a variety
+of parameters never yielded a significantly high mean success rate during just
+the first phase of training. As stated earlier, the primary purpose of the di-
+13achronic model is as a stepping stone towards the synchronous and synchronous
+magnitudes models. Barrett (Barrett, 2014) achieves significantly high success
+rates with a similar model by utilizing invention in the learning dynamics. This
+limits the terms available to the senders to only those that have led to suc-
+cess in action, and this limitation makes learning much easier. As will be seen,
+the synchronous magnitudes model will yield a similar increase in success rates
+by making the middle magnitude the most likely magnitude to be transmitted
+during the early stages of a simulation.
+For the synchronous model, with ten ball types in each of the senders’ urns,
+using (+4, -11) reinforcement with punishment, and 2 ×109training plays before
+testing yeilded a mean success rate of 0.7228 during training and a mean success
+rate of 0.66293 during testing. However, the simulations also yeilded a very odd
+result when training was restricted to just the second set of stimuli and only
+training on adjacent pairs. The model still performed above chance during the
+testing phase. Simulations had a mean success rate of 0.7256 during training
+and 0.6217 for the testing phase.4
+What is even more confusing is that, prima face, it seems that combinatori-
+ally we should expect performance during testing to be worse than chance when
+restricting training to just the second set of stimuli with only adjacent pairings
+in the training set. For the five stimuli in the second training set and ten terms
+in each of the senders urns there are essentially 831,847,680 strategy profiles for
+which every pairing in the training set gets mapped to the correct action and
+pairings in the test set tend to get mapped to the incorrect action, but there are
+only 766,177,920 strategy profiles for which every pairing in the training set gets
+mapped to the correct action and pairings in the test set tend to get mapped
+to the correct action.5Thus, it seems like mean success rates for the test pairs
+should be less than 0.5 when the training phase only consists of the second set
+of stimuli and the training set only consists of adjacent pairings. The resolution
+to this problem lies in observing that for strategy profiles that map at least two
+distinct pairings to the same receiver urn, there are only 78,943,680 strategy
+profiles for which every pairing in the training set gets mapped to the correct
+action and pairings in the test set tend to get mapped to the incorrect action,
+there are 137,649,600 strategy profiles for which every pairing in the training set
+4This is averaging over just 300 simulations as 2 ×109training plays takes a decent amount
+of time to simulate.
+5This is brushing over some details. By using the term ‘essentially’, what is indicated
+that this count is of pure strategy profiles rather than mixed strategy profiles. So whats really
+being counted are the pure strategy profiles that a simulation could converge to rather than
+the mixed profiles that necessarily obtain (since the learning dynamics require that there is
+always at least one ball of each type in each urn). The count of 831,847,680 is of pure strategy
+profiles such that every adjacent pairing is mapped to the correct action and where at least
+one of the b-d or d-b pair is mapped to the incorrect action and neither is mapped to the
+correct action. Likewise, the count of 766,177,920 is of pure strategy profiles such that every
+adjacent pairing is mapped to the correct action and where at least one of the b-d or d-b
+pair is mapped to the correct action and neither is mapped to the incorrect action. There are
+203,400,360 pure strategy profiles such that every adjacent pairing is mapped to the correct
+action and exactly one of the b-d or d-b pair is mapped to the correct action and the other is
+mapped to the incorrect action.
+14gets mapped to the correct action and pairings in the test set tend to get mapped
+to the correct action, and the learning dynamics makes these strategy profiles
+much more likely to obtain (since it is easy for the senders dispositions towards a
+pairing, for which successful dispositions have not yet been reinforced, to evolve
+a mapping to a receiver urn for which successful dispositions have already been
+reinforced for a distinct pairing).6
+For the synchronous magnitudes model, with senders having ten urns for
+each of the stimuli, using (+4, -11) reinforcement with punishment, and 107
+training plays before testing yielded a mean success rate of 0.999 during train-
+ing and a mean success rate of 0.845 during testing; 635 simulations of 1000 had
+a success rate greater than 0.9 for the testing phase. When restricting training
+to only the second set of stimuli and only training on adjacent pairs, simula-
+tions had a mean success rate of 0.999 during training and 0.734 during testing.
+Again, the explanation for this better than chance performance when only train-
+ing adjacent pairings from the second set of stimuli seems to be the learning
+dynamics tendency to produce strategy profiles in which multiple pairings get
+mapped to the same receiver urn.7
+The synchronous magnitudes model can be thought of as baking some or-
+dered structure into the model since there is an ordered relation between the
+magnitudes that can be transmitted: in the initial state of the model, for any
+stimuli, if there are ten urns per stimuli, then the most likely magnitude to be
+transmitted by each sender is 5 and the least likely transmissions are 0 and 10;
+furthermore, once a disposition to transmit some magnitude, say 7, has been
+reinforced, then the most likely deviations from this transmission are 6 and 8
+6Precisely, this explanation needs to be more nuanced for the synchronous model since it
+was rare for strategy profiles with training phase success rates near 1.0 to obtain. However,
+this nuance is unnecessary when considering the synchronous magnitudes model for which the
+learning parameters reported in the next paragraph yielded training phase success rates near
+1.0 for every simulation. Here, combinatorially, only 12%, of strategy profiles for which every
+pairing in the training set gets mapped to the correct action and at least one of the b-d or
+d-b pairs gets mapped to the same urn as one of the pairs from the training set, are such
+that at least two pairs from the training set get mapped to the same receiver urn. However,
+in simulations about 40% of the final strategy profiles have this property. Moreover, for the
+synchronous model, only 13.6% of strategy profiles for which every pairing in the training set
+gets mapped to the correct action and at least one of the b-d or d-b pairs gets mapped to the
+same urn as one of the pairs from the training set, are such that at least two pairs from the
+training set get mapped to the same receiver urn. However, in simulations 60% of the final
+strategy profiles have this property.
+7As stated in a prior footnote, only 12%, of strategy profiles for which every pairing in
+the training set gets mapped to the correct action and at least one of the b-d or d-b pairs
+gets mapped to the same urn as one of the pairs from the training set, are such that at least
+two pairs from the training set get mapped to the same receiver urn. However, in simulations
+about 40% of the final strategy profiles have this property. This is close, but not entirely
+sufficient for explaining the 0.734 mean success rate during testing. It could be that some
+amount of transitivity is baked into the model or simply that further investigation of the
+combinatorial properties of the game reveals further insight. While the number of strategy
+profiles that have at least two pairs being mapped to the same receiver urn were counted, it
+could be that strategy profiles with strictly more than two pairs being mapped to the same
+receiver urn obtain and that these profiles are even more biased towards the testing pair being
+mapped to the correct action.
+15rather than all alternative transmissions be equally likely as in the synchronous
+model. These properties of magnitudes can be thought of as reflecting neurons
+having a base firing rate that is then increased or decreased by learning events
+or can even be thought of as a potential spandrel, a la Gould and Lewontin,
+simply resulting from the connectivity of neurons (Gould and Lewontin, 1979).
+Two variations of the synchronous magnitudes mode were simulated to en-
+sure undue structure was not being baked into the model. First, it was trained
+on a single set of stimuli, a, b, c, d, and e being conditioned to choose according
+to the regular ordering for adjacent pairs, but the reverse order for non-adjacent
+pairs; e.g. for the pair c-b, choosing right was reinforced and choosing left was
+punished, and for the pair a-d, choosing right was reinforce and choosing left
+was punished. This variant was successfully learned with a mean success rate
+of 0.998 across simulations. Second, a variant was explored where for single set
+of stimuli, a, b, c, d, and e training on only adjacent pairs reinforced choosing
+according to the serial ordering, but training also included an additional stimuli
+x, such that choosing left for e-x, right for x-e, right for a-x, and left for x-a
+were reinforced. That is, the model was trained on adjacent pairs in a circular
+rather than linear ordering. This yielded a mean success rate of 0.999. So, it
+seems clear that the model is perfectly capable of representing relations other
+than linear transitive orderings.
+The circular ordering variant of the synchronous magnitudes model is notable
+because it actually reflects an experiment that was performed with pigeons.
+Von Fersen et al. in their black and white ink blots version of the transitive
+inference task hypothesized that the pigeons were relying on a type of analogue
+magnitude representation, called value transfer, during training and that this
+explained their success during the testing phase. Thus they predicted that it
+would not be possible to condition the pigeons on adjacent pairs according to
+a circular ordering. Contrary to their prediction two of three pigeons did learn
+the circular ordering (von Fersen et al., 1991). So the synchronous magnitudes
+model shows how the pigeons may have relied on magnitudes for learning yet
+still been able to represent a circular ordering.
+4 Transferring to Abstraction
+As previously stated, this paper’s discussion of abstraction simply refers to
+contexts where different particulars take on the same functional role. In the
+transitive inference task, we can see a simulation has learned to attribute the
+same functional role to stimuli from each serial ordering that occupy the same
+place in their respective ordering if the final dispositions are such that the cor-
+rect stimuli are chosen in the b-d and d-b test pairs (as already reported, this
+occurred roughly 63% of the time for the simultaneous magnitudes model). To
+make this claim concrete, suppose there are five ancient coins each with a head
+and tail side. Suppose further that the coins are serially ordered by value and
+that a subject is unfamiliar with the coins, i.e. upon seeing the heads side of
+a coin she cannot tell you what the tails side looks like and vice versa. In this
+16scenario, the stimuli of a coin’s head or tail is equally capable of fulfilling the
+functional role of indicating where in the serial ordering the coin is. Now, we
+could describe a deductive process by which the subject upon learning the or-
+dering of the coins according the head sides and having more limited exposure
+to information about the tail sides deduces which tail stimuli occupies the same
+place in the ordering as each head stimuli. However, what the models show
+is how simple associative processes can also lead to different particular stimuli
+occupying the same functional role. The fact that the model has no prior ex-
+posure to the b-d and d-b pairs shows that it is actually dispositions from the
+first serial ordering to the second rather than merely independently learning the
+appropriate dispositions for each set of stimuli.
+It is also clear that the different particular transitive inference models pre-
+sented accomplish this abstraction in the same way. The receiver urns are
+organized in the same way for all three models. This in conjunction with hav-
+ing separate left and right senders who condition their action on just a single
+stimulus in a pair allows signaling systems to obtain that exhibit already re-
+inforced dispositions towards novel stimulus pairings. As will be seen in the
+following section, this type of model architecture can accomplish abstraction in
+tasks other than transitive inference.
+5 Nonsense Grammar
+In a series of papers documenting experiments on cotton-top tamarins ( Sagui-
+nus oedipus ) and human infants, Hauser et al. claimed to have shown that
+the cognitive mechanisms for processing complex grammatical structures was
+uniquely human (Hauser et al., 2002b, 2001; Saffran et al., 2008). Critically, the
+content of these papers was used to support arguments in the prolific “Faculty
+of Language” paper he co-authored with Chomsky and Fitch (Hauser et al.,
+2002a). It must be noted that Hauser falsified data in at least one of these pa-
+pers, making human infants appear to be more competent than the cotton-top
+monkeys at processing particularly complex grammatical structures. However,
+data on simpler grammatical structures seems to be accurate and has been in-
+dependently replicated by Neiworth et al. (Neiworth et al., 2017). The most
+relevant of these experiments by Neiworth et al. is summarized in the following
+paragraph.
+The ability to learn simple grammatical patterns was assessed using a habit-
+uation paradigm with 16 adult cotton-tops as subjects. During a habituation
+phase, cotton-tops were exposed to consonant vowel sequences in an 001 or 011
+pattern, e.g. “pupuki” or “pukiki”. Seven different consonants (p, b, d, k, t,
+m, and n) and two vowels (i and u) were used to make the consonant vowel
+sounds that composed the 001 and 011 sequences. After a group of two or three
+monkeys was exposed consonant vowel sequence in only the 001 pattern or only
+the 011 pattern, a testing phase consisted in novel consonant vowel sounds (e.g.
+“wa”, “ji”, “la”, “ri”) arranged in sequences of both the same pattern that had
+been habituated and the alternative pattern. For example, if the 001 pattern
+17was habituated, the monkeys might be tested on “lalari” as the same pattern
+and “wajiji” as the alternative pattern. Whether the same or alternative pat-
+tern was presented first was varied from group to group. The result was that
+the monkeys spent significantly more time looking towards the novel sounds in
+the alternative pattern than the novel sounds in the same pattern. This was
+interpreted as the monkeys becoming habituated to the pattern from the ha-
+bituation phase and being capable of detecting the differences between the two
+nonsense grammars.
+The details of the nonsense grammar model that follow differ from the com-
+parative psychology experiment that inspired the model, but follow the exper-
+iment in spirit. In the nonsense grammar model, four nonsense grammars are
+considered: (i) 000, (ii) 001, (iii) 011, and (iv) 010. Sequences are composed of
+five different stimuli (A, B, C, D, E) arranged in one of the four nonsense gram-
+mar patterns. During training, sequences are selected at random with equal
+probability to be classified as (i), (ii), (iii), or (iv). The training set contains
+all sequences except those that contain stimuli D or E in pattern (iv). Then,
+in the testing phase, it is checked whether the sequences DED and EDE are
+successfully classified as pattern (iv).
+The model’s architecture, depicted in Figure 5, is essentially the same as
+the synchronous model. The only real difference is that there are three senders
+rather than two, the receiver correspondingly has urns indexed by three terms
+rather than two, and the receiver’s urns begin the game with one ball of each
+of four types (one for each grammar type that a sequence can be classified
+as). While depicted with each sender’s urns containing five different ball types,
+results are reported for each sender’s urns containing ten different ball types.
+18Figure 5: Synchronous Nonsense Grammar Model. For simplicity, this model is
+depicted with each of a sender’s urns containing five ball types. However this is a
+parameter that can be varied. The results section focuses on simulation results for
+which each urn contained ten ball types.
+19For the synchronous nonsense grammars model, simulations were run using
+[+4, -10] reinforcement with iterated punishment and 107training plays before
+testing (see Barrett and Gabriel for an explanation of reinforcement with iter-
+ated punishment (Barrett and Gabriel, 2022)). During the training phase, all
+simulations achieved a success rate above 0.85 and 91.1% of runs had a success
+rate greater than 0.99. During testing, nearly all simulations (96.9%) had a
+success rate better than chance (0.25), 58.1% of simulations had a success rate
+greater than 0.75, and 33.5% of simulations had a success rate greater than 0.9.
+So, a significant number of simulations correctly classified the test sequences.
+6 Discussion
+The models presented in this paper show how a low level associative learning
+dynamics, specifically Roth-Erev reinforcement with punishment and reinforce-
+ment with iterated punishment, can be employed to succeed at both the transi-
+tive inference task and the nonsense grammar task. In all of the models, success
+involved different stimuli getting mapped to the same intermediary variable,
+i.e. the same receiver urn.8For example, the stimuli pairs B-D and b-d can
+be mapped to the same receiver urn, transferring the successfully conditioned
+dispositions towards B-D to b-d. This only happens if the left sender transmits
+the same signal for B as she does for b, and likewise the right sender sends the
+same signal for D and d. Concretely, this may look like an agent learning to
+associate the head side of a coin, call it B, with the same dispositions as the
+tail side of the same coin, b. In this way, a rudimentary type of abstraction is
+realized in the models when they evolve successful dispositions; different par-
+ticular stimuli play the same functional role of eliciting the appropriate action.
+This is analogous to different particular board positions guiding chess masters
+to the same strategic ideas in virtue of the, potentially novel, board positions
+being associated with the same opening.
+Abstraction provides significant heuristic utility to finite boundedly rational
+agents. Chess masters would have no use for abstract categories of openings if
+they had the capacity to calculate every possible continuation of a board posi-
+tion. In fact, reliance on this sort of abstraction and chunking of common piece
+configurations, while common amongst human players, is virtually non-existent
+in computer chess engine methods of position evaluation (Gobet et al., 2004).
+However useful, abstraction’s role as a heuristic carries with it epistemic con-
+cerns. This paper’s introduction gave an example of how a person’s familiarity
+with success playing the against the French Defense may lead to a suboptimal
+transposition from the Sicilian into a French.9If humans had unlimited cog-
+nitive resources, a chess master could take into account strategic ideas for all
+8The term “intermediary variable” is used here in accordance with Marr’s account of the
+algorithmic level of explanation (Marr, 2010).
+9Specifically, this is objectively a suboptimal transposition for white when black is equally
+capable of playing a French or Sicilian. It is only in service of illustrating the epistemic concern
+that this paragraph ignores the possibility that white is making a strategic bet that black is
+less comfortable in French positions than Sicilian positions.
+20openings in a given board position rather than only those associated with a
+particular opening. Masters can also fail to notice a transposition leading to
+evaluating a position according to a suboptimal set of strategic considerations
+(Soltis, 2007).10
+Building on the chess analogy, the synchronous magnitudes model illustrates
+how abstraction can be facilitated by innate biases and we can worry that such
+biases lead us to systematically misrepresent the world. Now it could be that
+an organism is innately (and possibly for arbitrary reasons) biased towards rep-
+resenting things in its environment as linearly ordered because it evolved in an
+environment where it was adaptive to represent as being linearly ordered. But it
+seems equally plausible that such a bias could be a spandrel of neuron connectiv-
+ity.11Regardless of whether an innate bias is a result of environment pressures
+or an accidental consequence of some other adaptive trait, it is an open question
+whether that bias leads to systematic misrepresentation of the world. If objects
+in an environment are typically linearly related, an organism biased towards
+representing things as linearly related might represent those few things that are
+not linearly related as being linearly related. If an organism is innately biased
+towards represent things as linearly related for arbitrary reasons, it might still
+be able to represent things as not being linearly related; e.g. results showed that
+the simultaneous magnitudes model could learn a non-linear relation between
+the stimuli when conditioned to choose according to one ordering for contiguous
+stimuli but according to the reverse ordering for noncontiguous stimuli.
+It seems that there are a couple viable responses to a generic worry that
+abstraction facilitated by innate biases puts us in an epistemically precarious
+position. First, it is true that the synchronous magnitudes model demonstrates
+how abstraction can be facilitated by some, perhaps arbitrary, innate bias. How-
+ever, it is also the case that the model demonstrated an ability to represent a
+non linear relation despite its bias towards representing things as linearly or-
+10Similar epistemic concerns can be raised for chunking of piece configurations. While
+there may be principles that are generally true of some common piece configurations, those
+principles need not hold for all positions. It is said that “a knight on the rim is dim”,
+referencing the general principle that it is typically a mistake to move a knight to the edge
+of a board, say a5, because on the edge the knight can only control four squares rather than
+the eight it can control in the center of the board and also because, compared to a bishop,
+rook or queen, a knight requires substantially more moves to transition from attacking one
+side of the board to the other. But this principle might be violated if it allows the knight to
+be exchanged for a more valuable piece. Nimzovich dedicates the entire second part of his
+iconic book, My System , to analyzing common piece configurations (Nimzovich, 1964). What
+me might worry is that we are innately disposed only condition our judgments on a strict
+subset of relevant piece configurations. For example, novice chess players often find it easier
+to analyze the linear movement of the bishop than the non-linear movement of the knight and
+consequently systematically miss important strategic considerations involving knights. This
+might reflect a general bias towards representing things as being linearly related. It is an open
+empirical question whether chess masters’ chunking of piece configurations is such that they
+systematically make suboptimal judgments when certain piece configurations occur.
+11In defense of this claim, it might be noted that the architecture of the synchronous
+magnitudes model was not intended to exhibit a bias towards linearly ordered representations.
+Upon discovery of this bias, the author’s first response was to look for an error in the model’s
+code.
+21dered. Recall that the model was successfully trained to chose according to the
+regular ordering when presented with adjacent pairs, but also conditioned to
+chose according to the reverse ordering when presented with nonadjacent pairs;
+for example, choosing left was rewarded when presented with the pair a-b or
+b-c, but choosing right was rewarded when presented with the pair a-c.
+By analogy, suppose we found some species that succeeded on the transitive
+inference task with minimal training, but was so innately biased towards linear
+representation that the species could not be conditioned to correctly choose the
+winner in rock paper scissors (i.e. conditioned to chose left for the pairs rock-
+scissors, scissors-paper, and paper-rock as well as conditioned to chose right for
+the pairs scissors-rock, paper-scissors, and rock-paper). The species continued
+survival is indicative of it generally representing the world well enough sustain
+itself and procreate. But in the context of rock paper scissors, the species
+is a miserable failure. Upon discovering that some way in which we abstract
+information is facilitated by some innate bias, we can worry that perhaps we are
+like this species there is some niche context in which we are miserable failures.
+Given our generally proficient navigation of the world we might be entirely blind
+to our failure in this niche context. We might simply represent such contexts as
+being governed by random chance rather than a recognizable pattern.
+What the synchronous magnitudes model shows is that such worries can be
+too hasty. Abstraction can be facilitated by an innate bias in conjunction with
+enough flexibility in the learning mechanism to represent the world as contrary
+to the bias if necessary. Novice chess players often find it easier to understand
+tactics involving the bishop which moves linearly compared to tactics involving
+the knight which does not move linearly. It could be that this reflects some
+innate bias towards linear representation, but it would be wrong to conclude
+that we are incapable of appropriately representing tactics involving knights.12
+Beyond highlighting the fact that the synchronous magnitudes model is able
+to represent things as being contrary to its innate bias given the appropriate
+training, it is worth considering the power of accomplishing abstraction through
+low level associative learning. What the models in this paper show is how
+minimal the preconditions for abstracting from experience can be. If we were
+to give a linguistic description of how one might abstract a serial ordering from
+pairs or a grammatical relation from triplets, it would be difficult to do so
+without using language that appears to presuppose some prior representation
+of the type of relation that is being learned.13But the dynamics of the models
+previously described need not operate at the coarseness of the language used
+to describe them. The model does not need to first reliably choose left for an
+12Anecdotally, it is well known that novices struggle more with the knight than the bishop.
+As far as academic research goes, Gobet et al. (2004) does make explicit claims that the
+power of the bishop pair in open positions is more easily understood by humans than queen
+and knight vs queen and bishop citing Sturman (1996) in support of this claim. But, the
+evidence is weak, essentially amounting to anecdotes from world champion Capablanca and
+Grand Master Timoshchenko.
+13This mirrors an interpretation of one of Kant’s arguments that our representation of space
+cannot be empirical because in order to abstract the concept of space from relations between
+objects occupying space we first have to represent them as such (Janiak, 2022; Warren, 1998).
+22A-B pair before those dispositions can be co-opted for learning to choose left in
+response to observing the a-b pair. Those joint dispositions can grow gradually
+and simultaneously.
+To conclude, this discussion has not argued that our inferences guided by
+abstraction and biases are always warranted. We can always worry that we
+are suboptimally advancing a pawn. However, there are some reasons to be
+optimistic about our use of abstraction. Abstraction can be a useful heuristic
+tool for navigating a complex world (or complex chess positions). Furthermore,
+while it may be facilitated by some biases, there is also evidence that those biases
+can be overcome. Finally, it was suggested that abstraction through associative
+learning has the benefit of requiring minimal preconditions for learning when
+compared to explicit symbolic reasoning.
+23References
+Barrett, J. A. (2014). Rule-following and the evolution of basic concepts. Phi-
+losophy of Science , 81(5):829–839.
+Barrett, J. A. and Gabriel, N. (2022). Reinforcement with iterative punishment.
+Bond, A. B., Kamil, A. C., and Balda, R. P. (2003). Social complexity and
+transitive inference in corvids. Animal Behaviour , 65(3):479–487.
+Bryant, P. E. and Trabasso, T. (1971). Transitive inferences and memory in
+young children. Nature , 232:456–458.
+Chassy, P. (2013). The role of memory templates in experts’ strategic thinking.
+Journal of Psychology Research , 3(5):276–289.
+Davis, H. (1992). Transitive inference in rats (rattus norvegicus). Journal of
+Comparative Psychology , 106(4):342–349.
+de Groot, A. D. (1978). Thought and choice in chess . Mouton, 2nd edition.
+De Lillo, C., Floreano, D., and Antinucci, F. (2001). Transitive choices by a
+simple, fully connected, backpropogation neural network: Implications for the
+comparative study of transitive inference. Animal Cognition , 4(1):61–68.
+De Marzo, G. and Servedio, V. D. (2023). Quantifying the complexity and
+similarity of chess openings using online chess community data. Scientific
+Reports , 13.
+Frank, M. J., Rudy, J. W., Levy, W. B., and O’Reilly, R. C. (2005). When
+logic fails: Implicit transitive inference in humans. Memory & Cognition ,
+33(4):742–750.
+Gillan, D. J. (1981). Reasoning in the chimpanzee: Ii. transitive inference. Jour-
+nal of Experimental Psychology: Animal Behavior Processes , 7(2):150–164.
+Gobet, F., de Voogt, A., and Retschitzki, J. (2004). Moves in mind: The
+Psychology of Board Games . Psychology Press.
+Gould, S. J. and Lewontin, R. C. (1979). The spandrels of san marco
+and the panglossian paradigm: A critique of the adaptationist programme.
+Proceedings of the Royal Society of London. Series B. Biological Sciences ,
+205(1161):581–598.
+Grosenick, L., Clement, T. S., and Fernald, R. D. (2007). Fish can infer social
+rank by observation alone. Nature , 445(7126):429–432.
+Hauser, M. D., Chomsky, N., and Fitch, W. T. (2002a). The faculty of language:
+What is it, who has it, and how did it evolve? Science , 298(5598):1569–1579.
+24Hauser, M. D., Newport, E. L., and Aslin, R. N. (2001). Segmentation of the
+speech stream in a non-human primate: Statistical learning in cotton-top
+tamarins. Cognition , 78(3):B53–B64.
+Hauser, M. D., Weiss, D., and Marcus, G. (2002b). Rule learning by cotton-top
+tamarins. Cognition , 86:B15–B22.
+Janiak, A. (2022). Kant’s views on space and time.
+Marr, D. (2010). Vision: A computational investigation into the human repre-
+sentation and processing of visual information . MIT Press.
+Neiworth, J. J., London, J. M., Flynn, M. J., Rupert, D. D., Alldritt, O.,
+and Hyde, C. (2017). Artificial grammar learning in tamarins (saguinus
+oedipus) in varying stimulus contexts. Journal of Comparative Psychology ,
+131(2):128–138.
+Nimzovich, A. (1964). My system, a treatise on chess . D. McKay Co.
+Saffran, J., Hauser, M., Seibel, R., Kapfhamer, J., Tsao, F., and Cushman,
+F. (2008). Grammatical pattern learning by human infants and cotton-top
+tamarin monkeys. Cognition , 107(2):479–500.
+Siemann, M. and Delius, J. D. (1998). Algebraic learning and neural network
+models for transitive and non-transitive responding. European Journal of
+Cognitive Psychology , 10(3):307–334.
+Soltis, A. (2007). Transpo tricks in chess . Batsford.
+Sturman, M. (1996). Beware the bishop pair. ICGA Journal , 19(2):83–93.
+von Fersen, L., Wynne, C. D., Delius, J. D., and Staddon, J. E. (1991). Tran-
+sitive inference formation in pigeons. Journal of Experimental Psychology:
+Animal Behavior Processes , 17(3):334–341.
+Warren, D. (1998). Kant and the apriority of space. Philosophical Review ,
+107(2):179–224.
+25
