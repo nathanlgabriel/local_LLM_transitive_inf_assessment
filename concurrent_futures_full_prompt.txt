@@ -1,0 +1,40 @@
+grill-me on the modification_plan.md for the code in this directory until you are confident that you can correctly implement the plan. If you need more context on the modification plan and the code you can read the paper frenchsicilian_017.pdf; and download a python package for reading PDFs if you are not already able to do so. Additionally, there are a few other things I want you to make note of. First, I want you to copy the current files and make all of the modifications described in modification_plan.md in new .py and .ipynb files rather than modifying the original files. Second, I want you to update the way that the notebooks do multiprocessing and random number generation to fit the style of this example from some more recent code that I've written:
+
+import concurrent.futures
+from numpy.random import Generator, PCG64DXSM, SeedSequence
+
+
+
+        sq1 = SeedSequence()
+        randomentropy = sq1.entropy
+        print(randomentropy)
+        sg = SeedSequence(randomentropy)
+        rgs = numba.typed.List([Generator(PCG64DXSM(s)) for s in sg.spawn(runs)])
+
+
+
+
+
+
+        with concurrent.futures.ProcessPoolExecutor(max_workers=thrds) as executor:
+            future_to_genBS = {executor.submit(genBSreplicatorexec_full_play_typed, mutation_rate, signal_cost, repmultipliers, numprofiles, signal_snapshots, record_interval, genBSpunish, numtypes, numsignals, runlength, numactions, coordination_preferences, popt, sigurns, recurns, population_size, sigdimensions, base_connection_weights, sigmultipliers, homophily_factor, rgs[r], epsilon, r): inputs for r in range(runs)}
+            for future in concurrent.futures.as_completed(future_to_genBS):
+                inputs = future_to_genBS[future]
+                try:
+                    data_simple_stat_002, data_simple_stat_001, data_socialsig_aggregate, data_action_aggregate, data_sigurns, data_recurns, data_execurns, data_typed_time, data_signal_time, data_typed_time_norm, data_signal_time_norm, data_runid = future.result()
+                except Exception as exc:
+                    print(f'generated an exception: y? and {exc}')
+                else:
+                    final_simple_stat_001[data_runid] = data_simple_stat_001
+                    final_simple_stat_002[data_runid] = data_simple_stat_002
+                    final_socialsig_aggregate[data_runid] = data_socialsig_aggregate
+                    final_action_aggregate[data_runid] = data_action_aggregate
+                    final_sigurns[data_runid] = data_sigurns
+                    final_recurns[data_runid] = data_recurns
+                    final_execurns[data_runid] = data_execurns
+                    final_typed_time[data_runid] = data_typed_time
+                    final_signal_time[data_runid] = data_signal_time
+                    final_typed_time_norm[data_runid] = data_typed_time_norm
+                    final_signal_time_norm[data_runid] = data_signal_time_norm
+                    if data_runid%10 == 0:
+                        print(f'finished run #{data_runid}')
