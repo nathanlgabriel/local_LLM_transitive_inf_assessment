@@ -9,7 +9,6 @@ I previously thought Qwen 3.6 would outperform Gemma 4 on this kind of task, bas
 ## Key takeaways
 
 - **Gemma 4 31B QAT was the only local model that produced working end-to-end code I'd be willing to run on real data with minor edits.** Both attempts of it worked; the second attempt (with the revised prompt) added the held-out test set, generalization to arbitrary N, the circular variant, and the distance-effect analysis cell.
-- **Model size dominated prompt quality at the smaller scales.** The revised prompt clearly helped at 31B. At 26B A4B it produced structurally-better code that still didn't execute. At 12B it made no observable difference.
 - **Reasoning-loop stalls hit both 26b a4b and 12b Gemma models.** I'd expected this to be a MoE issue, so seeing 12B (dense) get stuck partway through was a surprise. The MoE 26B A4B also stopped mid-run multiple times and had to be prompted to continue.
 - **Grill-me time did NOT track output thoroughness.** Qwen 3.6 27B asked the most questions (21 requiring long written answers) before starting (3–5 hours of back-and-forth) and still significantly underperformed Gemma 4 31B which spent much less time asking questions.
 - **The Qwen models took initiative, for better and worse.** Sometimes useful — e.g. adding a floor on a noise-annealing parameter I hadn't asked for. Sometimes annoying — substantially rewriting `modification_plan.md` without being asked.
