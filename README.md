@@ -27,7 +27,7 @@ The table below summarizes what each run got working and what it didn't. Grades 
 | **Qwen 3.6 27B** | ✓ | ✗ | ✗ (cell-source bug) | ✗ | ✓ | ✓ in source | **3** |
 | **Qwen 3.6 35B A3B** | ✗ (IndentationError) | n/a | ✗ | ✗ | partial | ✓ in source | **2** |
 | **Gemma 4 26B A4B QAT** (no `/init`, original prompt) | imports, call fails | ✗ | ✗ (cell-source bug) | ✗ | ✗ | ✗ | **1** |
-| **Gemma 4 26B A4B QAT** (with `/init`, revised prompt) | ✓ | ✗ (arity bug) | ✓ | 0/8 | ✗ | stub with fake hardcoded prints | **1** |
+| **Gemma 4 26B A4B QAT** (with `/init`, revised prompt) | ✓ | ✗ (arity bug) | ✓ | 0 | ✗ | stub with fake hardcoded prints | **1** |
 | **Gemma 4 12B QAT** (revised prompt) | ✓ | ✗ | n/a (.ipynb files weren't valid JSON) | ✗ | ✗ | ✗ | **0** |
 
 The clearest within-model contrast available here is the two Gemma 4 31B QAT runs, which differ only in prompt version and llama.cpp version — the second run is meaningfully more complete.
